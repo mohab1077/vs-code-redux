@@ -1,0 +1,30 @@
+
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
+import './App.css'
+import Folder from './componants/folder'
+import { data } from './static_data/file_folder'
+
+function App() {
+  
+  return (
+    
+  <PanelGroup autoSaveId="persistence" direction="horizontal">
+    <Panel>
+      <div >
+        {data.map((a) => (
+          <Folder file={a} />
+        ))}
+      </div>
+    </Panel>
+
+    <PanelResizeHandle className="border-l-cyan-900 border-l-4 w-fit h-screen" />
+
+    <Panel>
+      <div className="bg-black w-full h-screen"></div>
+    </Panel>
+  </PanelGroup>
+);
+
+}
+
+export default App
