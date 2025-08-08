@@ -1,7 +1,7 @@
 
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import './App.css'
-import Folder from './componants/folder'
+import Folder from './componants/Folder'
 import { data } from './static_data/file_folder'
 
 function App() {
