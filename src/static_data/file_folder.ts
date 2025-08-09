@@ -1,3 +1,3 @@
 import type { Ifile } from "../interfaces/folder_files";
 
-export const data: Ifile[] = [{ name: "node_moduels", isfolder: true, children: [{ name: "react.ts", isfolder: false, content:"import react var a = 4" }, { name: "intereface", isfolder: true, children: [{ name: "file.ts", isfolder: false, content:"export interface Ifile{name:string,isfolder:boolean,content?:string,children?:Ifile[]}" }] }] },{name:"index.tsx" , isfolder:false}]
+export const data: Ifile[] = [{ name: "node_moduels", isfolder: true, children: [{ name: "react.ts", isfolder: false, content:"import react var a = 4" }, { name: "intereface", isfolder: true, children: [{ name: "file.ts", isfolder: false, content:"export interface Ifile{name:string,isfolder:boolean,content?:string,children?:Ifile[]}" }] }] },{name:"index.js" , isfolder:false}]

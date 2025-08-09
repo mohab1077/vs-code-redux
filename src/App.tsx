@@ -20,7 +20,9 @@ function App() {
     <PanelResizeHandle className="border-l-cyan-900 border-l-4 w-fit h-screen" />
 
     <Panel>
-      <div className="bg-black w-full h-screen"></div>
+      <div className="bg-black w-full h-screen flex justify-center items-center">
+        <img src="/icons/vscode.svg" alt="" className='h-56 w-48' />
+      </div>
     </Panel>
   </PanelGroup>
 );
