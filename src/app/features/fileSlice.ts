@@ -5,11 +5,16 @@ import { data } from '../../static_data/file_folder'
 
 
 export interface CounterState {
-  folder: Ifile[]
+  folder: Ifile[],
+  clickedfile:Ifile|null,
+  barfile:Ifile[]
 }
 
 const initialState: CounterState = {
   folder: data,
+  clickedfile:null,
+  barfile:[]
+
 }
 
 function findFileByName(files: Ifile[], targetName: string): Ifile | undefined {
@@ -37,10 +42,25 @@ export const fileSlice = createSlice({
       findFileByName(state.folder,action.payload)
       
     },
+     addfile: (state, action: PayloadAction<Ifile>) => {
+      state.clickedfile=action.payload
+      const exists = state.barfile.some(item => item.name === action.payload.name);
+      if(!exists){
+        state.barfile.push(action.payload)
+      }
+      
+    },
+    delfile: (state, action: PayloadAction<Ifile>) => {
+     state.barfile = state.barfile.filter((file)=>file.name!=action.payload.name)
+     if(state.clickedfile?.name===action.payload.name){
+      const length = state.barfile.length
+      state.clickedfile=state.barfile[length-1]
+     }
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {  isopenfolder } = fileSlice.actions
+export const {  delfile,addfile,isopenfolder } = fileSlice.actions
 
 export default fileSlice.reducer
