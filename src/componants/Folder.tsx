@@ -15,8 +15,9 @@ function Folder(file: Ifolder) {
                 <Image name={file.file.name}/>
                 <h6>{file.file.name}</h6>
                 </div>
-                {file.file.children ? file.file.children.map((a) => <Folder file={a} />)
-                    : undefined}
+
+                {file.file.isopen ? (file.file.children ? file.file.children.map((a) => <Folder file={a} />)
+                    : undefined) :undefined}
             </div>
 
         </>

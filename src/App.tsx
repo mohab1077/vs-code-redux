@@ -2,10 +2,12 @@
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import './App.css'
 import Folder from './componants/Folder'
-import { data } from './static_data/file_folder'
+import { useSelector } from 'react-redux';
+import type { RootState } from './app/store';
+//import { data } from './static_data/file_folder'
 
 function App() {
-  
+  const data = useSelector((state: RootState) => state.file.folder)
   return (
     
   <PanelGroup autoSaveId="persistence" direction="horizontal">

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { isopenfolder } from "../app/features/fileSlice";
 
 interface Img {
   name: string
@@ -7,10 +9,13 @@ interface Img {
 function Image({ name }: Img) {
 
   const split = name.split(".")[1]
+  const dispatch = useDispatch()
   const [isopen, setisopen] = useState<boolean>(false)
+
 
    const handelopne = ()=>{
     setisopen(!isopen)
+    dispatch(isopenfolder(name))
    }
   return (
     <div className="flex">
