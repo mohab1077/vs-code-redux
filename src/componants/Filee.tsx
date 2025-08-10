@@ -2,13 +2,21 @@ import { useSelector } from "react-redux"
 import type { RootState } from "../app/store"
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
+import { js as jsBeautify } from 'js-beautify';
 
 
-function Filee() {
+
+  function Filee() {
 
   const data = useSelector((state: RootState) => state.file.clickedfile)
   const content = data?.content ?? "";
-   const highlightedCode = hljs.highlightAuto(content).value;
+ 
+  const formattedCode = jsBeautify(content, {
+    indent_size: 2,
+    space_in_empty_paren: true,
+  });
+
+   const highlightedCode = hljs.highlightAuto( formattedCode).value;
   
   return (
     <div className={`bg-gray-900 w-full h-screen ${!data ? 'flex justify-center items-center' : ''}`}>
