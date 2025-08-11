@@ -52,7 +52,7 @@ function Foldermenue({menuPos,setMenuPos,file}:Iclose) {
             borderRadius: "4px",
             zIndex: 1000,
           }} ref={menuRef}>
-        <input type="text" value={name} onChange={handleChange} className="border-2 border-amber-50 rounded-md"  />
+        <input type="text" value={name} onChange={handleChange} className="border-2 border-amber-50 rounded-md w-25"  />
         <div
           onClick={closeMenu}
         >

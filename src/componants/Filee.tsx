@@ -26,7 +26,7 @@ import { js as jsBeautify } from 'js-beautify';
     .join("\n");
   
   return (
-    <div className={`bg-gray-900 w-full h-screen ${!data ? 'flex justify-center items-center' : ''}`}>
+    <div className={`bg-black w-full h-full ${!data ? 'flex justify-center items-center' : ' bg-zinc-900'}`}>
       {data ?
       
         <pre>

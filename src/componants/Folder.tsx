@@ -24,9 +24,9 @@ const [menuPos, setMenuPos] = useState<menupo| null>(null);
     return (
         <>
             <div className="ml-4 pr-2.5">
-                <div className="flex">
+                <div className="flex space-x-1">
                 <Image name={file.file.name}/>
-                {file.file.isfolder ? <h6 onContextMenu={handleRightClick}>{file.file.name}</h6> : <h6 className="cursor-pointer" onClick={handeladd}>{file.file.name}</h6> }
+                {file.file.isfolder ? <h6 onContextMenu={handleRightClick} className="cursor-pointer">{file.file.name}</h6> : <h6 className="cursor-pointer" onClick={handeladd}>{file.file.name}</h6> }
                
                 </div>
 

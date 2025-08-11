@@ -25,19 +25,21 @@ function SideBar() {
      setMenuPos({ x: e.pageX, y: e.pageY });
    }
 
-   
+   if(data.length==0){
+    return
+   }
 
     return (
-      <div className="flex space-x-0.5 border-1 border-b-emerald-50">
+      <div className="flex space-x-0.5  border-b-2 border-b-gray-700 h-8">
         {data.map((file)=>(
-            <div className="border-1 border-b-amber-950 w-40 flex items-center justify-center cursor-pointer"
+            <div className="border-r-1 border-b-amber-950 w-fit flex items-center justify-center cursor-pointer hover:bg-gray-100"
             onContextMenu={handleRightClick} >
-                <div onClick={()=>handelclick(file)} className="flex">
+                <div onClick={()=>handelclick(file)} className="flex pl-3 ">
                 <Image name={file.name}/>
                 <h6>{file.name}</h6>
                 </div>
                 <div className="pl-5">
-                    <div onClick={()=>handelclose(file)}>
+                    <div onClick={()=>handelclose(file)} className="pr-1 hover:bg-gray-200">
                    <Image name="a.close"/> 
                    </div>
                 </div>
