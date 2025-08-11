@@ -17,6 +17,13 @@ import { js as jsBeautify } from 'js-beautify';
   });
 
    const highlightedCode = hljs.highlightAuto( formattedCode).value;
+
+   const codeWithLines = highlightedCode
+    .split("\n")
+    .map((line, i) => {
+      return `<span class="line-number">${i + 1}</span> ${line}`;
+    })
+    .join("\n");
   
   return (
     <div className={`bg-gray-900 w-full h-screen ${!data ? 'flex justify-center items-center' : ''}`}>
@@ -25,7 +32,7 @@ import { js as jsBeautify } from 'js-beautify';
         <pre>
         <code
           className="text-amber-100"
-          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+          dangerouslySetInnerHTML={{ __html: codeWithLines }}
         />
       </pre>
         :

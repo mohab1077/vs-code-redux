@@ -57,10 +57,14 @@ export const fileSlice = createSlice({
       state.clickedfile=state.barfile[length-1]
      }
     },
+    delallfile: (state) => {
+    state.clickedfile=null
+    state.barfile=[]
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {  delfile,addfile,isopenfolder } = fileSlice.actions
+export const {  delfile,addfile,isopenfolder,delallfile } = fileSlice.actions
 
 export default fileSlice.reducer
