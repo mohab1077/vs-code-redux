@@ -33,6 +33,24 @@ function findFileByName(files: Ifile[], targetName: string): Ifile | undefined {
     return undefined; // لم نجد أي نتيجة
 }
 
+function findFile_push(files: Ifile[], targetName: string,newf:Ifile): Ifile | undefined {
+    for (const file of files) {
+        if (file.name === targetName) {
+            file.children?.push(newf)
+            return file; // وجدناه
+        }
+
+        // إذا لديه children نبحث بداخلهم
+        if (file.children && file.children.length > 0) {
+            const found = findFile_push(file.children, targetName,newf);
+            if (found) return found;
+        }
+    }
+    return undefined; // لم نجد أي نتيجة
+
+  }
+
+
 export const fileSlice = createSlice({
   name: 'file',
   initialState,
@@ -61,10 +79,19 @@ export const fileSlice = createSlice({
     state.clickedfile=null
     state.barfile=[]
     },
+    newfolder: (state, action: PayloadAction<{dadname:string , sonname:string }>) => {
+     const newfolder : Ifile={name:action.payload.sonname , isfolder:true, isopen:true ,children:[]}
+     findFile_push(state.folder,action.payload.dadname,newfolder)
+
+    },
+    newfile: (state, action: PayloadAction<{dadname:string , sonname:string }>) => {
+     const newfolder : Ifile={name:action.payload.sonname , isfolder:false, isopen:true }
+     findFile_push(state.folder,action.payload.dadname,newfolder)
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {  delfile,addfile,isopenfolder,delallfile } = fileSlice.actions
+export const {  delfile,addfile,isopenfolder,delallfile,newfolder,newfile } = fileSlice.actions
 
 export default fileSlice.reducer
