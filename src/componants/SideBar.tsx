@@ -30,7 +30,7 @@ function SideBar() {
    }
 
     return (
-      <div className="flex space-x-0.5  border-b-2 border-b-gray-700 h-8">
+      <div className="flex space-x-0.5  border-b-4 border-b-gray-700 h-8">
         {data.map((file)=>(
             <div className="border-r-1 border-b-amber-950 w-fit flex items-center justify-center cursor-pointer hover:bg-gray-100"
             onContextMenu={handleRightClick} >

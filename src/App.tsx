@@ -13,7 +13,7 @@ function App() {
   return (
     
   <PanelGroup autoSaveId="persistence" direction="horizontal">
-    <Panel className= 'bg-white pt-3'>
+    <Panel className= 'bg-white pt-3' minSize={15}>
       <div >
         {data.map((a) => (
           <Folder file={a} />
@@ -21,9 +21,9 @@ function App() {
       </div>
     </Panel>
 
-    <PanelResizeHandle className="border-l-gray-700 border-l-2 w-fit h-screen" />
+    <PanelResizeHandle className="border-l-gray-700 border-l-4 w-fit h-screen" />
 
-    <Panel>
+    <Panel minSize={20}>
       <SideBar/>
       <Filee/>
     </Panel>
