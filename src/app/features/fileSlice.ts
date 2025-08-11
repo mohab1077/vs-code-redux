@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Ifile } from '../../interfaces/folder_files'
 import { data } from '../../static_data/file_folder'
+import { faker } from "@faker-js/faker";
 
 
 export interface CounterState {
@@ -19,7 +20,7 @@ const initialState: CounterState = {
 
 function findFileByName(files: Ifile[], targetName: string): Ifile | undefined {
     for (const file of files) {
-        if (file.name === targetName) {
+        if (file.id === targetName) {
             file.isopen = !file.isopen
             return file; // وجدناه
         }
@@ -35,7 +36,7 @@ function findFileByName(files: Ifile[], targetName: string): Ifile | undefined {
 
 function findFile_push(files: Ifile[], targetName: string,newf:Ifile): Ifile | undefined {
     for (const file of files) {
-        if (file.name === targetName) {
+        if (file.id === targetName) {
             file.children?.push(newf)
             return file; // وجدناه
         }
@@ -62,15 +63,15 @@ export const fileSlice = createSlice({
     },
      addfile: (state, action: PayloadAction<Ifile>) => {
       state.clickedfile=action.payload
-      const exists = state.barfile.some(item => item.name === action.payload.name);
+      const exists = state.barfile.some(item => item.id === action.payload.id);
       if(!exists){
         state.barfile.push(action.payload)
       }
       
     },
     delfile: (state, action: PayloadAction<Ifile>) => {
-     state.barfile = state.barfile.filter((file)=>file.name!=action.payload.name)
-     if(state.clickedfile?.name===action.payload.name){
+     state.barfile = state.barfile.filter((file)=>file.id!=action.payload.id)
+     if(state.clickedfile?.id===action.payload.id){
       const length = state.barfile.length
       state.clickedfile=state.barfile[length-1]
      }
@@ -80,12 +81,14 @@ export const fileSlice = createSlice({
     state.barfile=[]
     },
     newfolder: (state, action: PayloadAction<{dadname:string , sonname:string }>) => {
-     const newfolder : Ifile={name:action.payload.sonname , isfolder:true, isopen:true ,children:[]}
+     const id = faker.string.uuid()
+     const newfolder : Ifile={name:action.payload.sonname , isfolder:true, isopen:true ,children:[],id:id}
      findFile_push(state.folder,action.payload.dadname,newfolder)
 
     },
     newfile: (state, action: PayloadAction<{dadname:string , sonname:string }>) => {
-     const newfolder : Ifile={name:action.payload.sonname , isfolder:false, isopen:true }
+     const id = faker.string.uuid()
+     const newfolder : Ifile={name:action.payload.sonname , isfolder:false, isopen:true,id:id }
      findFile_push(state.folder,action.payload.dadname,newfolder)
     },
   },

@@ -15,10 +15,10 @@ function Foldermenue({menuPos,setMenuPos,file}:Iclose) {
   const closeMenu = () => setMenuPos(null);
   const dispatch = useDispatch()
   const handelnewfolder = ()=>{
-    dispatch(newfolder({dadname:file.name,sonname:name}))
+    dispatch(newfolder({dadname:file.id,sonname:name}))
   }
   const handelnewfile = ()=>{
-    dispatch(newfile({dadname:file.name,sonname:name}))
+    dispatch(newfile({dadname:file.id,sonname:name}))
   }
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

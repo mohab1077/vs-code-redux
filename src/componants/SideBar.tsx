@@ -35,12 +35,12 @@ function SideBar() {
             <div className="border-r-1 border-b-amber-950 w-fit flex items-center justify-center cursor-pointer hover:bg-gray-100"
             onContextMenu={handleRightClick} >
                 <div onClick={()=>handelclick(file)} className="flex pl-3 ">
-                <Image name={file.name}/>
+                <Image name={file.name} id={file.id}/>
                 <h6>{file.name}</h6>
                 </div>
                 <div className="pl-5">
                     <div onClick={()=>handelclose(file)} className="pr-1 hover:bg-gray-200">
-                   <Image name="a.close"/> 
+                   <Image name="a.close" id={file.id}/> 
                    </div>
                 </div>
                  {menuPos && <Closemenue menuPos={menuPos} setMenuPos={setMenuPos} file={file}/>}

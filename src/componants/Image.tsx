@@ -3,10 +3,11 @@ import { useDispatch } from "react-redux";
 import { isopenfolder } from "../app/features/fileSlice";
 
 interface Img {
-  name: string
+  name: string,
+  id:string
 }
 
-function Image({ name }: Img) {
+function Image({ name,id }: Img) {
 
   const split = name.split(".")[1]
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ function Image({ name }: Img) {
 
    const handelopne = ()=>{
     setisopen(!isopen)
-    dispatch(isopenfolder(name))
+    dispatch(isopenfolder(id))
    }
   return (
     <div className="flex items-center justify-center  ">
