@@ -51,6 +51,23 @@ function findFile_push(files: Ifile[], targetName: string, newf: Ifile): Ifile |
 
 }
 
+function findFile_edit(files: Ifile[], targetName: string, newf: string): Ifile | undefined {
+  for (const file of files) {
+    if (file.id === targetName) {
+      file.content=newf
+      return file; // وجدناه
+    }
+
+    // إذا لديه children نبحث بداخلهم
+    if (file.children && file.children.length > 0) {
+      const found = findFile_edit(file.children, targetName, newf);
+      if (found) return found;
+    }
+  }
+  return undefined; // لم نجد أي نتيجة
+
+}
+
 
 export const fileSlice = createSlice({
   name: 'file',
@@ -91,9 +108,16 @@ export const fileSlice = createSlice({
       const newfolder: Ifile = { name: action.payload.sonname, isfolder: false, isopen: true, id: id }
       findFile_push(state.folder, action.payload.dadname, newfolder)
     },
-    updateFileContent: (state, action: PayloadAction<React.RefObject<string>>) => {
+    updateFileContent: (state, action: PayloadAction<{con : React.RefObject<string>,id:string | undefined}>) => {
+      if(action.payload.con.current==""){
+        return
+      }
       if (state.clickedfile) {
-        state.clickedfile.content = action.payload.current;
+        state.clickedfile.content = action.payload.con.current;
+        if(action.payload.id){
+        findFile_edit(state.folder, action.payload.id,action.payload.con.current)
+        }
+
       }
     },
   },
